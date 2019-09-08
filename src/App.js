@@ -43,17 +43,26 @@ class App extends Component {
       padding: '8px'
     };
 
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          {
+            this.state.persons.map(person => {
+              return <Person name={person.name} age={person.age} />
+            })
+          }
+        </div>
+      )
+    }
+
     return (
       <div className="App">
         <h1>Hi I'm React App</h1>
         <p>This is really working</p>
         <button style={style} onClick={this.togglePersonsHandler}>Click</button>
-        { this.state.showPersons ?
-          <div>
-            <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-            <Person click={this.gantiNamaHandler} name={this.state.persons[1].name} age={this.state.persons[1].age}>Hobi saya berenang</Person>
-            <Person name={this.state.persons[2].name} age={this.state.persons[2].age} changed={this.ubahNamaHandler} />
-          </div> : null}
+        {persons}
       </div>
     );
   }
