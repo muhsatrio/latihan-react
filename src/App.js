@@ -20,19 +20,18 @@ class App extends Component {
       {name: 'Hehe', age: 29}
     ]});
   }
-  
-  ubahNamaHandler = (e) => {
-    this.setState({persons: [
-      {name: 'Satrio', age: 23},
-      {name: e.target.value, age: 25},
-      {name: 'Hehe', age: 29}
-    ]});
-  }
 
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({showPersons: !doesShow});    
   }
+
+  deletePersonHandler = (index) => {
+    const persons = this.state.persons;
+    persons.splice(index, 1);
+    this.setState({persons: persons});
+  }
+  
 
   render() {
 
@@ -49,8 +48,8 @@ class App extends Component {
       persons = (
         <div>
           {
-            this.state.persons.map(person => {
-              return <Person name={person.name} age={person.age} />
+            this.state.persons.map((person, index) => {
+              return <Person click={() => this.deletePersonHandler(index)} name={person.name} age={person.age} />
             })
           }
         </div>
