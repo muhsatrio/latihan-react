@@ -6,6 +6,11 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
 
+  constructor(props) {
+    console.log('[App.js] constructor');
+    super(props);
+  }
+
   state = {
     persons: [
       {id: 1, name: 'Satrio', age: 23},
@@ -39,6 +44,19 @@ class App extends Component {
     persons.splice(index, 1);
     this.setState({persons: persons});
   }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+
+  // componentWillMount() {
+  //   console.log('[App.js] componentWillMount');
+  // }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
   
 
   render() {
@@ -57,7 +75,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Cockpit showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonsHandler}/>
+        <Cockpit title={this.props.appTitle} showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonsHandler}/>
         {persons}
       </div>
     );
