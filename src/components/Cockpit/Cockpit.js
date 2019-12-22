@@ -5,7 +5,10 @@ const Cockpit = (props) => {
 
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
-  });
+    setTimeout(() => {
+      alert('Saved data to cloud1');
+    }, 1000);
+  }, []);
     const style = {
         backgroundColor: 'green',
         color: 'white',
