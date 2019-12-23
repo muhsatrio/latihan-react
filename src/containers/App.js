@@ -17,7 +17,8 @@ class App extends Component {
       {id: 2, name: 'Wicaksono', age: 25},
       {id: 3, name: 'Hehe', age: 21}
     ],
-    showPersons: false
+    showPersons: false,
+    showCockpit: true
   }
 
   gantiNamaHandler = (event, id) => {
@@ -84,7 +85,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Cockpit title={this.props.appTitle} showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonsHandler}/>
+        <button onClick={() => {
+          this.setState({showCockpit: false})
+        }}>Remove Cockpit</button>
+        {this.state.showCockpit ? <Cockpit title={this.props.appTitle} showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonsHandler} /> : null }
         {persons}
       </div>
     );
