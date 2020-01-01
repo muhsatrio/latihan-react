@@ -86,15 +86,13 @@ class App extends Component {
     }
 
     return (
-      // <WithClass classes={classes.App}>
-      <div className="App">
+      <WithClass classes="App">
         <button onClick={() => {
           this.setState({showCockpit: false})
         }}>Remove Cockpit</button>
         {this.state.showCockpit ? <Cockpit title={this.props.appTitle} showPersons={this.state.showPersons} personsLength={this.state.persons.length} clicked={this.togglePersonsHandler} /> : null }
         {persons}
-      </div>
-      // </WithClass>
+      </WithClass>
     );
   }
 }
