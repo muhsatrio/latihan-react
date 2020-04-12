@@ -7,11 +7,16 @@ import NewPost from '../../containers/Blog/NewPost/NewPost';
 import {Route, Link, NavLink, Switch, Redirect} from 'react-router-dom';
 import Posts from './Posts/Posts';
 import './Blog.css';
+import asyncComponent from '../../hoc/asyncComponent';
+
+const NewPostAsync = asyncComponent(() => {
+    return import('../../containers/Blog/NewPost/NewPost');
+})
 
 class Blog extends Component {
 
     state = {
-        auth: false
+        auth: true
     };
 
     render () {
@@ -31,12 +36,12 @@ class Blog extends Component {
                 </header>
                 <Switch>
                     {/* Authentication for NewPost */}
-                    {this.state.auth ? <Route path="/new-post" component={NewPost} /> : null}
+                    {this.state.auth ? <Route path="/new-post" component={NewPostAsync} /> : null}
                     <Route path="/posts" component={Posts} />
-                    {/* <Redirect from="/" to="/posts" /> */}
-                    <Route render={() => (
+                    <Redirect from="/" to="/posts" />
+                    {/* <Route render={() => (
                         <h1>Not Found :(</h1>
-                    )} />
+                    )} /> */}
                 </Switch>
             </div>
         );
