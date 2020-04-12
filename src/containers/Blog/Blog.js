@@ -4,11 +4,15 @@ import axios from '../../axios';
 
 import Post from '../../components/Post/Post';
 import NewPost from '../../containers/Blog/NewPost/NewPost';
-import {Route, Link, NavLink} from 'react-router-dom';
+import {Route, Link, NavLink, Switch, Redirect} from 'react-router-dom';
 import Posts from './Posts/Posts';
 import './Blog.css';
 
 class Blog extends Component {
+
+    state = {
+        auth: false
+    };
 
     render () {
         return (
@@ -16,7 +20,7 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><NavLink to="/" exact>Home</NavLink></li>
+                            <li><NavLink to="/posts">Home</NavLink></li>
                             <li><NavLink to={{
                                 pathname: '/new-post',
                                 hash: '#submit',
@@ -25,17 +29,15 @@ class Blog extends Component {
                         </ul>
                     </nav>
                 </header>
-                <Route path="/" exact component={Posts} />
-                <Route path="/new-post" exact component={NewPost} />
-                {/* <Route path="/" exact render={() => <h1>Home</h1>} />
-                <Route path="/" exact render={() => <h1>Home 2</h1>} /> */}
-                {/* <Posts /> */}
-                {/* <section>
-                    <FullPost id={this.state.selectedPostId} />
-                </section>
-                <section>
-                    <NewPost />
-                </section> */}
+                <Switch>
+                    {/* Authentication for NewPost */}
+                    {this.state.auth ? <Route path="/new-post" component={NewPost} /> : null}
+                    <Route path="/posts" component={Posts} />
+                    {/* <Redirect from="/" to="/posts" /> */}
+                    <Route render={() => (
+                        <h1>Not Found :(</h1>
+                    )} />
+                </Switch>
             </div>
         );
     }
