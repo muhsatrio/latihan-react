@@ -3,6 +3,10 @@
     padding: 10px;
     box-sizing: border-box;
 }
+.Invalid {
+    border: 1px solid  red;
+    background-color: rgb(252, 120, 120);
+}
 
 .Label {
     font-weight: bold;
