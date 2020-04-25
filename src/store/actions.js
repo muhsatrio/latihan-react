@@ -1,6 +1,7 @@
-export const INCREMENT = 'INCREMENT';
-export const DECREMENT = 'DECREMENT';
-export const ADD = 'ADD';
-export const SUBSTRACT = 'SUBSTRACT';
-export const STORE_RESULT = 'STORE_RESULT';
-export const DELETE_RESULT = 'DELETE_RESULT';
+export const ADD_PERSON = 'ADD_PERSON';
+export const DELETE_PERSON = 'DELETE_PERSON';
+
+export default {
+    ADD_PERSON,
+    DELETE_PERSON
+};
