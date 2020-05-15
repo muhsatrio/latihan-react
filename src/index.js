@@ -1,22 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
+
+import counterReducer from './store/reducers/counter';
+import resultReducer from './store/reducers/result';
 import './index.css';
 import App from './App';
-import {createStore} from 'redux';
-import reducer from './store/reducer';
 import registerServiceWorker from './registerServiceWorker';
-import {BrowserRouter} from 'react-router-dom'
 
-const store = createStore(reducer);
+const rootReducer = combineReducers({
+    ctr: counterReducer,
+    res: resultReducer
+});
 
-const app = (
-    <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>
-)
+const store = createStore(rootReducer);
 
-ReactDOM.render(app, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
